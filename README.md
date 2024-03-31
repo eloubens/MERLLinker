@@ -60,8 +60,8 @@ Also, in the second print, the 2nd line has changed to 0xF1 due to the self-modi
 
 
 Run all lines of the following code:
-
-*Make sure that starter.merl is present in the directory where you are running this code.
+- .word 0x10000 is α (the starting address to load in the MERL file).
+- Make sure that starter.merl is present in the directory where you are running this code.
 
 cs241.linkasm < load.asm > merl.merl
 
@@ -74,4 +74,7 @@ cs241.linkasm < i.txt > input.merl
 cat address.bin input.merl > input.in
 
 mips.stdin combined.merl < input.in
+
+
+
 
