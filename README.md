@@ -1,6 +1,6 @@
 # MERLLinker
 
-Write a MIPS program that reads input (from standard input) consisting of a 32-bit memory address α followed by a MERL file.
+Write a MIPS program (load.asm) that reads input (from standard input) consisting of a 32-bit memory address α followed by a MERL file.
 
 Your program should load the MIPS code segment of the MERL file into memory at address α, and print each word of the MIPS code segment as it gets loaded.
 Next, it should read the footer of the MERL file and perform relocation on the loaded MIPS code.
