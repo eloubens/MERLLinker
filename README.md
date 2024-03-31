@@ -48,9 +48,17 @@ Notice that in the first print, the 6th line is 0x10. In the second print, it ha
 Also, in the second print, the 2nd line has changed to 0xF1 due to the self-modifying code. The self-modification should work regardless of the load address α.
 
 
+Run all lines of the following code:
+
 cs241.linkasm < load.asm > merl.merl
+
 cs241.linker merl.merl starter.merl > combined.merl
+
 cs241.binasm <<< '.word 0x10000' > address.bin
+
 cs241.linkasm < i.txt > input.merl
+
 cat address.bin input.merl > input.in
+
 mips.stdin combined.merl < input.in
+
