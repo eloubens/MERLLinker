@@ -1,0 +1,19 @@
+10000001
+00000000
+00001814
+000000F1
+00002014
+00000010
+AC830000
+03E00008
+10000001
+000000F1
+00001814
+000000F1
+00002014
+00010004
+AC830000
+03E00008
+
+; Notice that in the first print, the 6th line is 0x10. In the second print, it has been relocated to 0x10004.
+; Also, in the second print, the 2nd line has changed to 0xF1 due to the self-modifying code. The self-modification should work regardless of the load address α.
