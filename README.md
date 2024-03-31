@@ -24,40 +24,6 @@ Both procedures preserve all registers not used for return values. So readWord p
 The starter code is provided as both assembly source code and a MERL library. It is up to you whether you simply copy the source code into your submissions, or use the ".import" directive to import the procedures from the MERL file. Marmoset will accept both options.
 Make sure that starter.merl is present in the directory where you are running this code.
 
-Example
-Suppose that input.asm now contains the following self-modifying code, and the load address α is 0x10000.
-
-beq $0, $0, skip
-changeMe: .word 0
-skip:
-lis $3
-.word 241
-lis $4
-.word changeMe
-sw $3, 0($4)
-jr $31
-Your program's output should be:
-
-10000001
-00000000
-00001814
-000000F1
-00002014
-00000010
-AC830000
-03E00008
-10000001
-000000F1
-00001814
-000000F1
-00002014
-00010004
-AC830000
-03E00008
-Notice that in the first print, the 6th line is 0x10. In the second print, it has been relocated to 0x10004.
-
-Also, in the second print, the 2nd line has changed to 0xF1 due to the self-modifying code. The self-modification should work regardless of the load address α.
-
 
 Run all lines of the following code:
 - .word 0x10000 is α (the starting address to load in the MERL file).
@@ -73,7 +39,7 @@ cs241.linkasm < i.txt > input.merl
 
 cat address.bin input.merl > input.in
 
-mips.stdin combined.merl < input.in
+mips.stdin combined.merl < input.in > output.txt
 
 
 
