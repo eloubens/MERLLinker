@@ -38,5 +38,19 @@ cat address.bin input.merl > input.in
 mips.stdin combined.merl < input.in > output.txt
 
 
+Explanations:
+cs241.linkasm < load.asm > merl.merl : creates a merl file (an object file) for load.asm
+
+cs241.linker merl.merl starter.merl > combined.merl : links the load.asm with starter.merl because load.asm uses printhex and readword functions from starter.merl.
+
+cs241.binasm <<< '.word 0x10000' > address.bin : convert our α input to another format.
+
+cs241.linkasm < i.txt > input.merl : creates merl file (object file) for the mips program i.txt.
+
+cat address.bin input.merl > input.in : appends the starting address α to the merl file (that contains our mips program i.txt)
+
+mips.stdin combined.merl < input.in > output.txt : give the input named input.in( α + merl file containing mips code) to our program combined.merl (combined.merl = load.asm + starter.asm which contains printhex and readword functions used in load.asm).
+
+
 
 
