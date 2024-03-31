@@ -13,6 +13,17 @@ This time, the MERL file can have a non-empty footer. However, the footer of the
 
 All other implementation notes from Problem 6 still apply. The main difference is that in this problem, you will be tested with programs that do not work when loaded at nonzero addresses unless relocation is performed correctly.
 
+
+
+We have provided some starter code in the form of two MIPS procedures:
+
+readWord, which takes no parameters and reads a single word (4 bytes) from standard input, storing the value in $3. If standard input has fewer than 4 bytes remaining, the behaviour is undefined.
+printHex, which prints the hexadecimal representation of the word in $1 to standard output, followed by a newline. It does not return a value.
+Both procedures preserve all registers not used for return values. So readWord preserves all registers except $3, and printHex preserves all registers.
+
+The starter code is provided as both assembly source code and a MERL library. It is up to you whether you simply copy the source code into your submissions, or use the ".import" directive to import the procedures from the MERL file. Marmoset will accept both options.
+Make sure that starter.merl is present in the directory where you are running this code.
+
 Example
 Suppose that input.asm now contains the following self-modifying code, and the load address α is 0x10000.
 
@@ -49,6 +60,8 @@ Also, in the second print, the 2nd line has changed to 0xF1 due to the self-modi
 
 
 Run all lines of the following code:
+
+*Make sure that starter.merl is present in the directory where you are running this code.
 
 cs241.linkasm < load.asm > merl.merl
 
