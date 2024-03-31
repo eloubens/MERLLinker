@@ -1,0 +1,27 @@
+MIPS Executable Relocatable Linkable (.merl) File Format
+A .merl file is an executable MIPS binary file that is augmented by a table containing relocation and linking information. 
+A .merl file has three components (Header, MIPS program, Relocation and External Symbol Table):
+Header: Three words consisting of:
+1. Cookie: a word containing 0x10000002 (which happens to be the binary encoding of the MIPS instruction beq $0,$0,2)
+2. EndModule: the length (in bytes) of the .merl file
+3. EndCode: the length (in bytes) of the header plus the MIPS program (see below)
+
+MIPS program: a MIPS binary program encoded so as to execute correctly when loaded at RAM address 0xc (immediately following the header)
+
+Relocation and External Symbol Table: zero or more table entries, each having one of the following format:
+
+relocation entry: each relocation entry contains two words:
+1. REL format code: a word containing 0x01
+2. location: the location in the .merl file where the relocatable value is encoded
+
+external symbol definition:
+1. ESD format code: a word containing 0x05
+2. location: a 32 bit word encoding the (relocatable) value of the defined symbol (that is, the location the symbol refers to)
+3. name: a 32 bit word encoding n, the number of characters in the symbol name, followed by n words, each encoding one of the characters in ASCII
+
+external symbol reference: a relocatable value whose encoding is imported from some other .merl file, consisting of
+1. ESR format code: a word containing 0x11
+2. location: the location in the .merl file where the value is to be encoded, once known
+3. name: a 32 bit word encoding n, the number of characters in the symbol name, followed by n words, each encoding one of the characters in ASCII
+
+A .merl file may be executed at location 0 as a .mips binary, or may be used as input to a loader or linker which creates a .mips binary to be executed at some other location, or which creates another .merl file.
